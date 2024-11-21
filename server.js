@@ -21,7 +21,14 @@ const client = new Client({
   database: process.env.DB_NAME,
 });
 
-await client.connect();
+await client
+  .connect()
+  .then(() => {
+    console.log("Database connected successfully");
+  })
+  .catch((err) => {
+    console.error("Database connection error:", err);
+  });
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -29,20 +36,24 @@ const openai = new OpenAI({
 
 app.post("/api/itinerary", async (req, res) => {
   try {
+    console.log("Received request:", req.body);
     const { location, preference } = req.body;
 
+    console.log("Querying database...");
     const dbRes = await client.query(
       `SELECT * FROM locations WHERE name ILIKE $1 ORDER BY RANDOM() LIMIT 10`,
       [`%${location}%`]
     );
+    console.log("Database response:", dbRes.rows);
     const places = dbRes.rows;
 
     let result = places;
 
     // If no locations found, fetch mock data from OpenAI
     if (places.length === 0) {
+      console.log("No places found, calling OpenAI...");
       const response = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-4o-mini",
         messages: [
           {
             role: "system",
@@ -57,8 +68,10 @@ app.post("/api/itinerary", async (req, res) => {
       });
 
       const mockPlaces = JSON.parse(response.choices[0].message.content);
+      console.log("OpenAI response:", mockPlaces);
 
       // Insert mock data into the database
+      console.log("Inserting mock data into database...");
       for (const place of mockPlaces) {
         await client.query(
           `INSERT INTO locations (name, type, rating, lat, lon) VALUES ($1, $2, $3, $4, $5)`,
@@ -70,12 +83,16 @@ app.post("/api/itinerary", async (req, res) => {
     }
 
     // Create an itinerary
+    console.log("Creating itinerary..."); // Add this
     const itinerary = createItinerary(result, preference);
+    console.log("Final itinerary:", itinerary); // Add this
 
     res.json(itinerary);
   } catch (error) {
     console.error("Server error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message }); // Added error details
   }
 });
 
