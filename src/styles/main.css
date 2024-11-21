@@ -1,0 +1,187 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.slider-container span {
+  flex: 1;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+input[type="range"] {
+  flex: 2;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  outline: none;
+  margin: 0 15px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #cccccc;
+}
+
+button:disabled {
+  background-color: #4a4a4a;
+  color: #8a8a8a;
+  cursor: not-allowed;
+}
+
+.itinerary {
+  width: 100%;
+}
+
+.itinerary h2 {
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.itinerary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itinerary-item {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.itinerary-item .time {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.itinerary-item .place {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.itinerary-item .type {
+  font-size: 14px;
+  color: #8a8a8a;
+  text-transform: capitalize;
+}
+
+.itinerary-item .coordinates {
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.transportation-info {
+  background-color: #222222;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.transportation-info .distance {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.transportation-info .transport-method {
+  color: #cccccc;
+  margin-right: 10px;
+}
+
+.transportation-info .transport-details {
+  color: #8a8a8a;
+}
+
+.error {
+  color: #ff4a4a;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+footer {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+  color: #8a8a8a;
+}
