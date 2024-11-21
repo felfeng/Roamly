@@ -12,6 +12,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.21.1",
     "openai": "^4.0.0",
